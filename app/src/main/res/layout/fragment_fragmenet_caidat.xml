@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Screen.fragmenet_caidat"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="30dp">
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Chung"
+            android:textColor="#FF9100"
+            />
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/internet"
+                android:textOn="On"
+                android:textSize="18dp"
+                android:textOff="Off"
+                android:text="   Tự Động Mở Trang Web   "/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:drawableLeft="@drawable/sound"
+                android:textOn="On"
+                android:textSize="18dp"
+                android:textOff="Off"
+                android:text="   Âm Thanh"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:textOn="On"
+                android:textSize="18dp"
+                android:drawableLeft="@drawable/vibrate"
+                android:textOff="Off"
+                android:text="   Rung"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:background="@drawable/ripple"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/historyquet"
+                android:textOn="On"
+                android:textOff="Off"
+                android:textSize="18dp"
+                android:text="   Tự Động Lưu Lịch Sử Quét"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Trợ Giúp"
+            android:textColor="#FF9100"
+            />
+
+            <Button
+                android:id="@+id/st_help"
+                android:drawableLeft="@drawable/help"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:text="Trợ Giúp Và Phản Hồi"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/st_gioithieu"
+                android:drawableLeft="@drawable/about"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:text="Giới Thiệu"
+                android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/st_giayphep"
+                android:drawableLeft="@drawable/license"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:text="Giấy Phép Mã Nguồn Mở"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:drawableLeft="@drawable/app"
+                android:id="@+id/st_app"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple"
+                android:text="Phiên Bản App"
+                android:textColor="@color/black"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CodeScreen.taoQRWifi">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar_taoQRwifi"
+        app:title="Tạo QR Wifi"
+        android:background="@color/primary"
+        app:titleTextColor="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/toolbar_taoQRwifi"
+        android:ems="10"
+        android:hint="Tên Mạng"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/editTextTextPersonName5"
+        android:paddingLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/spinner"
+        android:ems="10"
+        android:hint="Mật Khẩu"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp" />
+
+</RelativeLayout>

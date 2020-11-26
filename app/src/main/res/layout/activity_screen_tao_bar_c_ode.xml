@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Screen.Screen_taoBarCOde">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            app:title="Tạo Barcode"
+            app:titleTextColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="Code_128"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="AZTEC"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="CODABAR"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="CODE 39"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="CODE 93"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="DATA MATRIX"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="EAN 8"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="EAN 13"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="ITF"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="MAXICODE"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="PDF 417"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        //ITF MAXICODE PDF417 RSS14 RSSEXPANDED UPCA UPCE UPCEAN
+
+        <Button
+            android:id="@+id/btn_taoBarcode12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="RSS 14"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="RSS EXPANDED"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="UPCA"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="UPCE"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_taoBarcode16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:drawableLeft="@drawable/barcode1"
+            android:onClick="gotoCreateBarcode"
+            android:paddingTop="10dp"
+            android:text="UPCEAN"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</ScrollView>

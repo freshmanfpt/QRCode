@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Screen.Screen_TaoQR">
+
+    <androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/toolbar_qr"
+    app:title="Tạo QR"
+    android:background="@color/primary"
+    app:titleTextColor="@color/white"
+    />
+    <Button
+        android:id="@+id/btn_taoQR1"
+        android:paddingTop="10dp"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart"
+        android:drawableLeft="@drawable/ic_baseline_content_copy_24"
+        android:text="Nội Dung Sao Chép"
+        />
+    <Button
+        android:id="@+id/btn_taoQR2"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:text="Trang Web"
+        android:textAlignment="textStart"
+        android:layout_width="match_parent"
+        android:drawableLeft="@drawable/ic_baseline_web_24"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_taoQR3"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@drawable/ic_baseline_wifi_24"
+        android:layout_height="wrap_content"
+        android:text="Wifi"/>
+    <Button
+        android:id="@+id/btn_taoQR4"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
+        android:layout_height="wrap_content"
+        android:text="Vị Trí"/>
+    <Button
+        android:id="@+id/btn_taoQR5"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:textAlignment="textStart"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_text_snippet_24"
+        android:text="Văn Bản"/>
+    <Button
+        android:id="@+id/btn_taoQR6"
+        android:background="@drawable/ripple"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@drawable/ic_baseline_apps_24"
+        android:layout_height="wrap_content"
+        android:text="Ứng Dụng"/>
+</LinearLayout>
