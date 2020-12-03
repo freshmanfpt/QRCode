@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.example.app.R;
@@ -83,6 +84,13 @@ public class Home extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return fragmentTitle.get(position);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            fragment_quet.resumePreview();
         }
     }
 
