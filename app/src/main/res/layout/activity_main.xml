@@ -11,15 +11,16 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slideViewPager"
         android:layout_width="match_parent"
-        android:layout_height="655dp" >
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/slideLinearLayout">
 
     </androidx.viewpager.widget.ViewPager>
 
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:id="@+id/slideLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/slideViewPager"
+        android:layout_height="70dp"
         android:gravity="center"
         android:orientation="horizontal">
 

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Screen.fragment_quet">
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/view_scanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_scanner"
         app:autoFocusButtonColor="@android:color/white"
         app:autoFocusButtonVisible="true"
         app:flashButtonColor="@android:color/white"
@@ -25,3 +25,4 @@
         app:maskColor="#77000000"/>
 
 </FrameLayout>
+
