@@ -1,20 +1,30 @@
 package com.example.app.ShowCode;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.app.R;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class webXemMa extends AppCompatActivity {
-
+    ImageView img_hinhAnhMa;
+    TextView tv_noiDung;
+    TextView tv_theLoai;
+    TextView tv_ngayThang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,28 @@ public class webXemMa extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        img_hinhAnhMa = findViewById(R.id.img_hinhAnhMa);
+        tv_noiDung = findViewById(R.id.tv_noiDungMa);
+        tv_theLoai = findViewById(R.id.tv_theLoaiMa);
+        tv_ngayThang = findViewById(R.id.tv_ngayThangMa);
+
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("web");
+
+        String full = textName;
+
+        MultiFormatWriter writer = new MultiFormatWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode(full, BarcodeFormat.QR_CODE, 450, 450);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            img_hinhAnhMa.setImageBitmap(bitmap);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        tv_noiDung.setText(textName+"\n");
     }
 
     @Override

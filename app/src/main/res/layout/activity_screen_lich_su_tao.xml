@@ -13,4 +13,10 @@
         android:background="@color/primary"
         app:titleTextColor="@color/white"
         />
+
+    <ListView
+        android:id="@+id/lv_lichsutao"
+        android:layout_below="@id/toolbar_lstao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

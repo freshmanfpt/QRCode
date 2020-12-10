@@ -13,7 +13,7 @@
         app:titleTextColor="@color/white"
         />
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/tv_kinhDo_vitri"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/toolbar_taoQRviTri"
@@ -23,10 +23,10 @@
         android:paddingLeft="10dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/tv_viDo_vitri"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/editTextTextPersonName2"
+        android:layout_below="@id/tv_kinhDo_vitri"
         android:ems="10"
         android:hint="vi do"
         android:inputType="textPersonName"

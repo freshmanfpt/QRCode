@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="75dp">
+
+    <ImageView
+        android:id="@+id/img_anhTheLoai"
+        android:layout_gravity="center"
+        android:layout_width="24dp"
+        android:layout_height="24dp"/>
+
+    <LinearLayout
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="7dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/tv_noiDung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:text="TextView" />
+
+        <TextView
+            android:textColor="@color/secondary_text"
+            android:id="@+id/tv_theLoai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="TextView" />
+
+        <TextView
+            android:textColor="#A5A5A5"
+            android:id="@+id/tv_ngayThang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="TextView" />
+    </LinearLayout>
+
+</LinearLayout>

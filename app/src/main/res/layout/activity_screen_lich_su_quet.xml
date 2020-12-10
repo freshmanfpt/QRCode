@@ -8,9 +8,15 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar_lstao"
+        android:id="@+id/toolbar_lsquet"
         app:title="Lịch Sử Quét"
         android:background="@color/primary"
         app:titleTextColor="@color/white"
         />
+
+    <ListView
+        android:id="@+id/lv_lichsuquet"
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar_lsquet"
+        android:layout_height="match_parent" />
 </RelativeLayout>
