@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -22,6 +19,7 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.app.DAO.maCode;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.webShowCode;
 import com.google.zxing.Result;
 
 import java.time.LocalDateTime;
@@ -32,7 +30,6 @@ public class fragment_quet extends Fragment {
     private CodeScanner mCodeScanner;
     private static final int REQUEST_PERMISSION_CODE = 10;
     private SQLite sqLite;
-
     CodeScannerView scannerView;
 
     private static final String ARG_PARAM1 = "param1";
@@ -89,6 +86,16 @@ public class fragment_quet extends Fragment {
                         Toast.makeText(fragment_quet.this.getActivity(), result.getText(),Toast.LENGTH_LONG).show();
                         maCode maCode = new maCode(result.getText(), "", getCurrentTime(), "quet");
                         sqLite.addQRcode(maCode);
+                        //
+
+
+                        Intent intent = new Intent(fragment_quet.this.getContext(), webShowCode.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("noiDung", result.getText());
+                        bundle.putString("theLoai", "");
+                        bundle.putString("thoiGian", getCurrentTime());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                         resumePreview();
                     }
                 });

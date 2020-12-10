@@ -44,8 +44,9 @@ public class webXemMa extends AppCompatActivity {
         tv_ngayThang = findViewById(R.id.tv_ngayThangMa);
 
         Bundle bundle = getIntent().getExtras();
-        String textName = bundle.getString("web");
-
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
         String full = textName;
 
         MultiFormatWriter writer = new MultiFormatWriter();
@@ -58,7 +59,9 @@ public class webXemMa extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        tv_noiDung.setText(textName+"\n");
+        tv_noiDung.setText(textName);
+        tv_theLoai.setText(textName1);
+        tv_ngayThang.setText(textName2);
     }
 
     @Override
