@@ -47,15 +47,15 @@ public class maCodeAdapter extends BaseAdapter {
 
         tv_noiDungCode.setText(maCode.getMaCode());
         tv_theLoaiCode.setText(maCode.getTheLoai());
-        tv_theLoaiCode.setText(maCode.getNgayThang());
+        tv_ngayThangCode.setText(maCode.getNgayThang());
 
         if(maCode.getTheLoai().equalsIgnoreCase("barcode")){
             imageView_hinhAnh.setImageResource(R.drawable.barcode1);
-        }else if (maCode.getTheLoai().equalsIgnoreCase("QR Code Vi Tri")){
+        }else if (maCode.getTheLoai().equalsIgnoreCase("vitri")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_location_on_24);
-        }else if (maCode.getTheLoai().equalsIgnoreCase("QR Code Web")){
+        }else if (maCode.getTheLoai().equalsIgnoreCase("web")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);
-        }else if (maCode.getTheLoai().equalsIgnoreCase("QR Code Van Ban")){
+        }else if (maCode.getTheLoai().equalsIgnoreCase("vanban")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);
         }else {
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_qr_code_24);
