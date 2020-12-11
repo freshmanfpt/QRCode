@@ -45,6 +45,8 @@ public class maCodeAdapter extends BaseAdapter {
         imageView_hinhAnh =convertView.findViewById(R.id.img_anhTheLoai);
         maCode maCode =maCodeList.get(position);
 
+        convertView.setTag(maCode);
+
         tv_noiDungCode.setText(maCode.getMaCode());
         tv_theLoaiCode.setText(maCode.getTheLoai());
         tv_theLoaiCode.setText(maCode.getNgayThang());

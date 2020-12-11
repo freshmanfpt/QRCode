@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
@@ -22,10 +23,16 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.app.DAO.maCode;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.barcodeShow;
+import com.example.app.ShowCode.vanBanShow;
+import com.example.app.ShowCode.webXemMa;
+import com.example.app.ShowCode.wifiShowCode;
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class fragment_quet extends Fragment {
 
@@ -87,9 +94,37 @@ public class fragment_quet extends Fragment {
                     @Override
                     public void run() {
                         Toast.makeText(fragment_quet.this.getActivity(), result.getText(),Toast.LENGTH_LONG).show();
-                        maCode maCode = new maCode(result.getText(), "", getCurrentTime(), "quet");
+
+                        String theloai;
+                        Class classToShow;
+
+                        if (!(result.getBarcodeFormat().equals(BarcodeFormat.AZTEC) ||
+                                result.getBarcodeFormat().equals(BarcodeFormat.QR_CODE) ||
+                                result.getBarcodeFormat().equals(BarcodeFormat.DATA_MATRIX) ||
+                                result.getBarcodeFormat().equals(BarcodeFormat.PDF_417))){
+                            theloai = "barcode";
+                            classToShow = barcodeShow.class;
+                        }else if (result.getText().startsWith("WIFI:")){
+                            theloai = "wifi";
+                            classToShow = wifiShowCode.class;
+                        }else if(result.getText().startsWith("http")){
+                            theloai = "web";
+                            classToShow = webXemMa.class;
+                        }else{
+                            theloai = "vanban";
+                            classToShow = vanBanShow.class;
+                        }
+
+                        maCode maCode = new maCode(result.getText(), theloai, getCurrentTime(), "quet");
+
                         sqLite.addQRcode(maCode);
-                        resumePreview();
+                        Intent intent = new Intent(fragment_quet.this.getActivity(), classToShow);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("quet", result.getText());
+                        bundle.putString("theloai", theloai);
+//                        bundle.putString("");
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
                 });
             }

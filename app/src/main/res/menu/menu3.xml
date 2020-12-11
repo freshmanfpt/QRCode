@@ -6,6 +6,7 @@
         android:title="Location"
         app:showAsAction="always"/>
     <item
+        android:id="@+id/share"
         android:icon="@drawable/share_menu"
         android:title="Check"
         app:showAsAction="always"/>

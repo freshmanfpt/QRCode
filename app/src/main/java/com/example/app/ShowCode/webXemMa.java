@@ -1,5 +1,6 @@
 package com.example.app.ShowCode;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -25,6 +26,9 @@ public class webXemMa extends AppCompatActivity {
     TextView tv_noiDung;
     TextView tv_theLoai;
     TextView tv_ngayThang;
+
+    String textName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,7 @@ public class webXemMa extends AppCompatActivity {
         tv_ngayThang = findViewById(R.id.tv_ngayThangMa);
 
         Bundle bundle = getIntent().getExtras();
-        String textName = bundle.getString("web");
+        textName = bundle.getString("web");
 
         String full = textName;
 
@@ -65,6 +69,13 @@ public class webXemMa extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
             finish();
+        }else if (item.getItemId()==R.id.share){
+            Intent shareIntent =   new Intent(android.content.Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
+            String content = textName;
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,content);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
         return super.onOptionsItemSelected(item);
     }

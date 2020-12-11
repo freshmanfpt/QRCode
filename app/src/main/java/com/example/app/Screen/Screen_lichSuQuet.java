@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,8 @@ public class Screen_lichSuQuet extends AppCompatActivity {
     ListView listViewQuet;
     maCodeAdapter maCodeAdapter;
     List<maCode> maCodeList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,17 @@ public class Screen_lichSuQuet extends AppCompatActivity {
         maCodeList = sqLite.getDanhSachQuet();
         maCodeAdapter = new maCodeAdapter(maCodeList);
         listViewQuet.setAdapter(maCodeAdapter);
+
+        listViewQuet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                maCode maCode = (maCode) view.getTag();
+                
+            }
+        });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -51,6 +65,7 @@ public class Screen_lichSuQuet extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
