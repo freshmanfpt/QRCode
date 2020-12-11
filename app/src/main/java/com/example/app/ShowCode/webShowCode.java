@@ -1,9 +1,5 @@
 package com.example.app.ShowCode;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,9 +8,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.app.R;
-import com.example.app.SubScreen.Info;
 
 public class webShowCode extends AppCompatActivity {
 
@@ -30,6 +30,20 @@ public class webShowCode extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+
+
+        TextView textView = findViewById(R.id.tv_webnoidung_kq);
+        TextView textView1 = findViewById(R.id.tv_webtheloai_kq);
+        TextView textView2 = findViewById(R.id.tv_webtg_kq);
+
+        textView.setText(textName);
+        textView1.setText(textName1);
+        textView2.setText(textName2);
+
     }
 
     @Override
@@ -45,7 +59,17 @@ public class webShowCode extends AppCompatActivity {
         return true;
     }
     public void goToXemMa(View view){
-        Intent intent = new Intent(getApplicationContext(),webXemMa.class);
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+
+        Intent intent = new Intent(webShowCode.this, webXemMa.class);
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("noiDung", textName);
+        bundle1.putString("theLoai", textName1);
+        bundle1.putString("thoiGian", textName2);
+        intent.putExtras(bundle1);
         startActivity(intent);
     }
 }

@@ -1,11 +1,14 @@
 package com.example.app.Screen;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import com.example.app.DAO.maCode;
 import com.example.app.DAO.maCodeAdapter;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.webShowCode;
 
 import java.util.List;
 
@@ -41,6 +45,23 @@ public class Screen_lichSuTao extends AppCompatActivity {
         maCodeList = sqLite.getDanhSachTao();
         maCodeAdapter = new maCodeAdapter(maCodeList);
         listViewTao.setAdapter(maCodeAdapter);
+
+        listViewTao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                maCode maCode = maCodeList.get(i);
+                if(maCode.getTheLoai().equalsIgnoreCase("web")){
+                    Intent intent = new Intent(Screen_lichSuTao.this, webShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     @Override

@@ -13,8 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.app.DAO.maCode;
 import com.example.app.R;
+import com.example.app.SQL.SQLite;
 import com.example.app.ShowCode.webXemMa;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class taoQRWeb extends AppCompatActivity {
 
@@ -41,12 +46,24 @@ public class taoQRWeb extends AppCompatActivity {
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             String tvKD = editText.getText().toString();
-            bundle.putString("web", tvKD);
+            bundle.putString("noiDung", tvKD);
+            bundle.putString("theLoai", "web");
+            bundle.putString("thoiGian", getCurrentTime());
             intent.putExtras(bundle);
+            SQLite sqLite = new SQLite(taoQRWeb.this);
+            maCode maCode = new maCode(tvKD,"web",getCurrentTime(),"tao");
+            sqLite.addQRcode(maCode);
             startActivity(intent);
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getCurrentTime(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
