@@ -124,7 +124,6 @@ public class fragment_quet extends Fragment {
                         bundle.putString("thoiGian", getCurrentTime());
                         intent.putExtras(bundle);
                         startActivity(intent);
-                        resumePreview();
                     }
                 });
             }
