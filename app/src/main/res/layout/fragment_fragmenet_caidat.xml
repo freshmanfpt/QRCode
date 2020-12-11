@@ -26,27 +26,29 @@
                 android:textOn="On"
                 android:textSize="18dp"
                 android:textOff="Off"
-                android:text="   Tự Động Mở Trang Web   "/>
+                android:text="   Tự Động Mở Trang Web   "
+                android:id="@+id/tgg_showWeb"/>
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple"
-                android:drawableLeft="@drawable/sound"
-                android:textOn="On"
-                android:textSize="18dp"
-                android:textOff="Off"
-                android:text="   Âm Thanh"/>
+<!--            <androidx.appcompat.widget.SwitchCompat-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/ripple"-->
+<!--                android:drawableLeft="@drawable/sound"-->
+<!--                android:textOn="On"-->
+<!--                android:textSize="18dp"-->
+<!--                android:textOff="Off"-->
+<!--                android:text="   Âm Thanh"-->
+<!--                android:id="@+id/toggle_amThanh"/>-->
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple"
-                android:textOn="On"
-                android:textSize="18dp"
-                android:drawableLeft="@drawable/vibrate"
-                android:textOff="Off"
-                android:text="   Rung"/>
+<!--            <androidx.appcompat.widget.SwitchCompat-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/ripple"-->
+<!--                android:textOn="On"-->
+<!--                android:textSize="18dp"-->
+<!--                android:drawableLeft="@drawable/vibrate"-->
+<!--                android:textOff="Off"-->
+<!--                android:text="   Rung"/>-->
 
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="match_parent"
@@ -56,7 +58,8 @@
                 android:textOn="On"
                 android:textOff="Off"
                 android:textSize="18dp"
-                android:text="   Tự Động Lưu Lịch Sử Quét"/>
+                android:text="   Tự Động Lưu Lịch Sử Quét"
+                android:id="@+id/tgg_luuQuet"/>
 
     </LinearLayout>
     <LinearLayout

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.app.R;
 
 public class webShowCode extends AppCompatActivity {
+
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class webShowCode extends AppCompatActivity {
         String textName = bundle.getString("noiDung");
         String textName1 = bundle.getString("theLoai");
         String textName2 = bundle.getString("thoiGian");
-
+        url = bundle.getString("noiDung");
 
         TextView textView = findViewById(R.id.tv_webnoidung_kq);
         TextView textView1 = findViewById(R.id.tv_webtheloai_kq);
@@ -50,6 +53,12 @@ public class webShowCode extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
             finish();
+        }else if (item.getItemId()==R.id.share){
+            Intent shareIntent =   new Intent(android.content.Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,url);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -58,6 +67,13 @@ public class webShowCode extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu3,menu);
         return true;
     }
+
+    public void moTrenWeb(View v){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
     public void goToXemMa(View view){
         Bundle bundle = getIntent().getExtras();
         String textName = bundle.getString("noiDung");

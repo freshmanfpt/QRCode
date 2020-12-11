@@ -44,6 +44,16 @@ public class vanBanShow extends AppCompatActivity {
     }
     public void goToXemMa(View view){
         Intent intent = new Intent(getApplicationContext(),webXemMa.class);
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("noiDung", textName);
+        bundle1.putString("theLoai", textName1);
+        bundle1.putString("thoiGian", textName2);
+        intent.putExtras(bundle1);
         startActivity(intent);
     }
 }

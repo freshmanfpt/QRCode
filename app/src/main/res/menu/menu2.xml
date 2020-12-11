@@ -4,9 +4,11 @@
     <item
         android:icon="@drawable/locationwhite"
         android:title="Location"
+        android:id="@+id/location"
         app:showAsAction="always"/>
     <item
         android:icon="@drawable/ic_baseline_check_24"
         android:title="Check"
+        android:id="@+id/check"
         app:showAsAction="always"/>
 </menu>

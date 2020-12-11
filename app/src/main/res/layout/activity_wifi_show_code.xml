@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:background="@color/trasn"
             android:text="Sao chép tên mạng"
+            android:onClick="copyTenMang"
             android:textColor="@color/black"
             />
         <Button
@@ -80,6 +81,7 @@
             android:layout_height="wrap_content"
             android:background="@color/trasn"
             android:text="Sao chép mật khẩu"
+            android:onClick="copyMatKhau"
             android:textColor="@color/black"
             />
     </LinearLayout>

@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.app.R;
 import com.google.android.material.badge.BadgeDrawable;
@@ -88,16 +89,7 @@ public class Home extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            fragment_quet.resumePreview();
-        }
-    }
-
-    @Override
     public void onBackPressed() {
-//        finishAndRemoveTask();
-
         finishAffinity();
         System.exit(0);
     }

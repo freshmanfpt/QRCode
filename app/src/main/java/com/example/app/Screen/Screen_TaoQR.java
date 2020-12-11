@@ -12,13 +12,20 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.app.CodeScreen.taoQRApp;
 import com.example.app.CodeScreen.taoQRVanBan;
 import com.example.app.CodeScreen.taoQRViTri;
 import com.example.app.CodeScreen.taoQRWeb;
 import com.example.app.CodeScreen.taoQRWifi;
+import com.example.app.DAO.maCode;
+import com.example.app.MainActivity;
 import com.example.app.R;
+import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.webXemMa;
+
+import static com.example.app.MainActivity.getCurrentTime;
 
 public class Screen_TaoQR extends AppCompatActivity {
 
@@ -45,8 +52,24 @@ public class Screen_TaoQR extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), taoQRApp.class);
-                startActivity(intent);
+                if (MainActivity.getClipBoard(Screen_TaoQR.this) != null){
+                    String noiDung = MainActivity.getClipBoard(Screen_TaoQR.this);
+
+                    Intent intent = new Intent(Screen_TaoQR.this, webXemMa.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", noiDung);
+                    bundle.putString("theLoai", "vanBan");
+                    bundle.putString("thoiGian", getCurrentTime());
+                    intent.putExtras(bundle);
+                    SQLite sqLite = new SQLite(Screen_TaoQR.this);
+                    maCode maCode = new maCode(noiDung,"vanBan",getCurrentTime(),"tao");
+                    sqLite.addQRcode(maCode);
+                    startActivity(intent);
+                }else{
+//                    Intent intent = new Intent(getApplicationContext(), taoQRApp.class);
+//                    startActivity(intent);
+                    Toast.makeText(Screen_TaoQR.this, "Nội dung sao chép của bạn đang rỗng!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {

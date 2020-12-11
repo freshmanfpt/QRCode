@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.app.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -54,14 +55,27 @@ public class webXemMa extends AppCompatActivity {
         String full = textName;
 
         MultiFormatWriter writer = new MultiFormatWriter();
-        try {
-            BitMatrix bitMatrix = writer.encode(full, BarcodeFormat.QR_CODE, 450, 450);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            img_hinhAnhMa.setImageBitmap(bitmap);
-        } catch (Exception e){
-            e.printStackTrace();
+        if (textName1 == "barcode"){
+            BarcodeFormat barcodeFormat = (BarcodeFormat) bundle.get("barcodeFormat");
+            try {
+                BitMatrix bitMatrix = writer.encode(full, barcodeFormat, 450, 150);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                img_hinhAnhMa.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                BitMatrix bitMatrix = writer.encode(full, BarcodeFormat.QR_CODE, 450, 450);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                img_hinhAnhMa.setImageBitmap(bitmap);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
 
         tv_noiDung.setText(textName);
         tv_theLoai.setText(textName1);

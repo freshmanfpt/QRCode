@@ -6,16 +6,20 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.app.MainActivity;
 import com.example.app.R;
+import com.example.app.SQL.PreferenceApp;
 import com.example.app.SubScreen.AppVersion;
 import com.example.app.SubScreen.Help;
 import com.example.app.SubScreen.Info;
@@ -34,6 +38,8 @@ public class fragmenet_caidat extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private SwitchCompat tggShowWeb;
+    private SwitchCompat tggLuuQuet;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,7 +80,22 @@ public class fragmenet_caidat extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragmenet_caidat, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragmenet_caidat, container, false);
+        tggLuuQuet = view.findViewById(R.id.tgg_luuQuet);
+        tggShowWeb = view.findViewById(R.id.tgg_showWeb);
+        tggShowWeb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PreferenceApp.getInstance().putBoolean(PreferenceApp.SHOW_WEB, isChecked);
+            }
+        });
+        tggLuuQuet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                PreferenceApp.getInstance().putBoolean(PreferenceApp.TU_LUU_LICH_SU_QUET, isChecked);
+            }
+        });
+        return view;
     }
 
     @Override

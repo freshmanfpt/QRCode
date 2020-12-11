@@ -5,15 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.app.DAO.maCode;
 import com.example.app.R;
+import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.webXemMa;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,14 +26,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static com.example.app.MainActivity.getCurrentTime;
+
 public class taoQRViTri extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private EditText txtKinhDo;
+    private EditText txtViDo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tao_q_r_vi_tri);
+        txtKinhDo = findViewById(R.id.tv_kinhDo_vitri);
+        txtViDo = findViewById(R.id.tv_viDo_vitri);
 
         Toolbar toolbar = findViewById(R.id.toolbar_taoQRviTri);
         setSupportActionBar(toolbar);
@@ -50,6 +61,21 @@ public class taoQRViTri extends AppCompatActivity implements OnMapReadyCallback 
         }
         if (item.getItemId()==R.id.check){
             Toast.makeText(this, "1.0.0", Toast.LENGTH_SHORT).show();
+
+            String kinhDo = txtKinhDo.getText().toString();
+            String viDo = txtViDo.getText().toString();
+
+            Intent intent = new Intent(this, webXemMa.class);
+            Bundle bundle = new Bundle();
+            String noiDung = "geo:"+kinhDo+","+viDo;
+            bundle.putString("noiDung", noiDung);
+            bundle.putString("theLoai", "viTri");
+            bundle.putString("thoiGian", getCurrentTime());
+            intent.putExtras(bundle);
+            SQLite sqLite = new SQLite(taoQRViTri.this);
+            maCode maCode = new maCode(noiDung,"viTri",getCurrentTime(),"tao");
+            sqLite.addQRcode(maCode);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.app.R;
 
 public class barcodeShow extends AppCompatActivity {
+
+    private String content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,33 @@ public class barcodeShow extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+        content = bundle.getString("noiDung");
+
+        TextView textView = findViewById(R.id.textView2);
+        TextView textView1 = findViewById(R.id.textView4);
+        TextView textView2 = findViewById(R.id.textView5);
+
+        textView.setText(textName);
+        textView1.setText(textName1);
+        textView2.setText(textName2);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
             finish();
+        }else if (item.getItemId()==R.id.share){
+            Intent shareIntent =   new Intent(android.content.Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,content);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -44,6 +68,16 @@ public class barcodeShow extends AppCompatActivity {
     }
     public void goToXemMa(View view){
         Intent intent = new Intent(getApplicationContext(),webXemMa.class);
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("noiDung", textName);
+        bundle1.putString("theLoai", textName1);
+        bundle1.putString("thoiGian", textName2);
+        intent.putExtras(bundle1);
         startActivity(intent);
     }
 }

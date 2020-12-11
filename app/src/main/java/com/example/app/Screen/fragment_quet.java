@@ -22,6 +22,7 @@ import com.example.app.R;
 import com.example.app.SQL.SQLite;
 import com.example.app.ShowCode.barcodeShow;
 import com.example.app.ShowCode.vanBanShow;
+import com.example.app.ShowCode.vitriShowCode;
 import com.example.app.ShowCode.webXemMa;
 import com.example.app.ShowCode.wifiShowCode;
 import com.google.zxing.BarcodeFormat;
@@ -64,15 +65,18 @@ public class fragment_quet extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         sqLite = new SQLite(this.getActivity());
+        System.out.println("tuan: frag_quet onCreate");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        System.out.println("tuan: frag_quet onResume");
         if (Build.VERSION.SDK_INT>=23 &&
                 this.getActivity().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
             String[] permission = {Manifest.permission.CAMERA};
             requestPermissions(permission, REQUEST_PERMISSION_CODE);
+            System.out.println("tuan: frag_quet xin cap quyen");
         }else{
             resumePreview();
         }
@@ -90,7 +94,6 @@ public class fragment_quet extends Fragment {
                 fragment_quet.this.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(fragment_quet.this.getActivity(), result.getText(),Toast.LENGTH_LONG).show();
 
                         String theloai;
                         Class classToShow;
@@ -106,21 +109,26 @@ public class fragment_quet extends Fragment {
                             classToShow = wifiShowCode.class;
                         }else if(result.getText().startsWith("http")){
                             theloai = "web";
-                            classToShow = webXemMa.class;
-                        }else{
+                            classToShow = webShowCode.class;
+                        }else if(result.getText().startsWith("geo")){
+                            theloai = "viTri";
+                            classToShow = vitriShowCode.class;
+                        } else{
                             theloai = "vanban";
                             classToShow = vanBanShow.class;
                         }
 
                         maCode maCode = new maCode(result.getText(), theloai, getCurrentTime(), "quet");
 
+                        Toast.makeText(fragment_quet.this.getActivity(), result.getText()+" : "+theloai,Toast.LENGTH_LONG).show();
+
                         sqLite.addQRcode(maCode);
 
 
-                        Intent intent = new Intent(fragment_quet.this.getContext(), webShowCode.class);
+                        Intent intent = new Intent(fragment_quet.this.getContext(), classToShow);
                         Bundle bundle = new Bundle();
                         bundle.putString("noiDung", result.getText());
-                        bundle.putString("theLoai", "");
+                        bundle.putString("theLoai", theloai);
                         bundle.putString("thoiGian", getCurrentTime());
                         intent.putExtras(bundle);
                         startActivity(intent);
@@ -144,6 +152,12 @@ public class fragment_quet extends Fragment {
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("tuan: frag_quet onPause");
     }
 
     public void resumePreview(){
