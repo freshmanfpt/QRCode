@@ -1,5 +1,7 @@
 package com.example.app.Screen;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -62,6 +64,26 @@ public class Screen_lichSuQuet extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
             finish();
+        }
+        if (item.getItemId() == R.id.delete){
+            new AlertDialog.Builder(Screen_lichSuQuet.this).setTitle("Bạn muốn xóa tất lịch sử?")
+                    .setMessage("value")
+                    .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sqLite.deleteAll();
+                            maCodeList = sqLite.getDanhSachQuet();
+                            maCodeAdapter = new maCodeAdapter(maCodeList);
+                            listViewQuet.setAdapter(maCodeAdapter);
+                        }
+                    })
+                    .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }

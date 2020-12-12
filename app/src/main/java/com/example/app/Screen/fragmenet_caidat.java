@@ -15,17 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.app.MainActivity;
 import com.example.app.R;
-import com.example.app.SQL.PreferenceApp;
-import com.example.app.SubScreen.AppVersion;
 import com.example.app.SubScreen.Help;
-import com.example.app.SubScreen.Info;
 import com.example.app.SubScreen.License;
-import android.content.SharedPreferences;
 
 import static android.content.Context.MODE_PRIVATE;
 

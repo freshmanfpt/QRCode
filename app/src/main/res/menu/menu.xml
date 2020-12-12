@@ -8,5 +8,6 @@
     <item
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="Xoa"
+        android:id="@+id/delete"
         app:showAsAction="always"/>
 </menu>
