@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.app.R;
 
 public class vanBanShow extends AppCompatActivity {
-
+    private String content;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,19 @@ public class vanBanShow extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Bundle bundle = getIntent().getExtras();
+        String textName = bundle.getString("noiDung");
+        String textName1 = bundle.getString("theLoai");
+        String textName2 = bundle.getString("thoiGian");
+        content = bundle.getString("noiDung");
+
+        TextView textView = findViewById(R.id.textView2);
+        TextView textView1 = findViewById(R.id.textView4);
+        TextView textView2 = findViewById(R.id.textView5);
+
+        textView.setText(textName);
+        textView1.setText(textName1);
+        textView2.setText(textName2);
     }
 
     @Override

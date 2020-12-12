@@ -91,8 +91,14 @@ public class SQLite extends SQLiteOpenHelper {
         sqLiteDatabase.delete("QRCode","maCode = ?", new String[]{maCode});
     }
 
-    public void deleteAll(){
+    public void deleteQuet(){
+        String danhsach1 = "quet";
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        sqLiteDatabase.execSQL("delete from "+TABLE_NAME);
+        sqLiteDatabase.execSQL("delete from "+TABLE_NAME+" where danhsach like '" +danhsach1+"%'");
+    }
+    public void deleteTao(){
+        String danhsach1 = "tao";
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.execSQL("delete from "+TABLE_NAME+" where danhsach like '" +danhsach1+"%'");
     }
 }

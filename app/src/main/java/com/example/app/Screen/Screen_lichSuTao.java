@@ -19,7 +19,11 @@ import com.example.app.DAO.maCode;
 import com.example.app.DAO.maCodeAdapter;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.barcodeShow;
+import com.example.app.ShowCode.vanBanShow;
+import com.example.app.ShowCode.vitriShowCode;
 import com.example.app.ShowCode.webShowCode;
+import com.example.app.ShowCode.wifiShowCode;
 
 import java.util.List;
 
@@ -58,8 +62,39 @@ public class Screen_lichSuTao extends AppCompatActivity {
                     bundle.putString("thoiGian", maCode.getNgayThang());
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("viTri")){
+                    Intent intent = new Intent(Screen_lichSuTao.this, vitriShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("wifi")){
+                    Intent intent = new Intent(Screen_lichSuTao.this, wifiShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("vanban")){
+                    Intent intent = new Intent(Screen_lichSuTao.this, vanBanShow.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().startsWith("barcode")){
+                    Intent intent = new Intent(Screen_lichSuTao.this, barcodeShow.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
-
             }
         });
     }

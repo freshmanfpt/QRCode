@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,9 +46,22 @@ public class vitriShowCode extends AppCompatActivity {
         textView.setText(content);
         textView1.setText(theLoai);
         textView2.setText(thoiGian);
+        findViewById(R.id.moVitri_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moMap(content);
+            }
+        });
 
     }
-
+    public void moMap(String noiDung){
+        Uri geoLocation = Uri.parse(noiDung);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){

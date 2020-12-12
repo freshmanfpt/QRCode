@@ -129,7 +129,7 @@ public class fragment_quet extends Fragment {
                         }
 
                         SharedPreferences luuQuet = fragment_quet.this.getActivity().getSharedPreferences("luuQuet", Context.MODE_PRIVATE);
-                        if (luuQuet.getBoolean("luuQuet", false)){
+                        if (luuQuet.getBoolean("luuQuet", true)){
                             maCode maCode = new maCode(result.getText(), theloai, getCurrentTime(), "quet");
                             sqLite.addQRcode(maCode);
                             Toast.makeText(fragment_quet.this.getActivity(), "Đã lưu vào lịch sử", Toast.LENGTH_SHORT).show();

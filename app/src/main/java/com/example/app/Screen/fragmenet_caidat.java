@@ -83,7 +83,7 @@ public class fragmenet_caidat extends Fragment {
         SharedPreferences showWeb = fragmenet_caidat.this.getActivity().getSharedPreferences("showWeb", Context.MODE_PRIVATE);
         SharedPreferences luuQuet = fragmenet_caidat.this.getActivity().getSharedPreferences("luuQuet", Context.MODE_PRIVATE);
         tggShowWeb.setChecked(showWeb.getBoolean("showWeb", false));
-        tggLuuQuet.setChecked(luuQuet.getBoolean("luuQuet", false));
+        tggLuuQuet.setChecked(luuQuet.getBoolean("luuQuet", true));
         tggShowWeb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

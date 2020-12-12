@@ -2,6 +2,7 @@ package com.example.app.Screen;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -20,6 +21,11 @@ import com.example.app.DAO.maCode;
 import com.example.app.DAO.maCodeAdapter;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.barcodeShow;
+import com.example.app.ShowCode.vanBanShow;
+import com.example.app.ShowCode.vitriShowCode;
+import com.example.app.ShowCode.webShowCode;
+import com.example.app.ShowCode.wifiShowCode;
 
 import java.util.List;
 
@@ -52,8 +58,56 @@ public class Screen_lichSuQuet extends AppCompatActivity {
         listViewQuet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                maCode maCode = (maCode) view.getTag();
-                
+                maCode maCode = maCodeList.get(position);
+                if(maCode.getTheLoai().equalsIgnoreCase("web")){
+                    Intent intent = new Intent(Screen_lichSuQuet.this, webShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("viTri")){
+                    Intent intent = new Intent(Screen_lichSuQuet.this, vitriShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("wifi")){
+                    Intent intent = new Intent(Screen_lichSuQuet.this, wifiShowCode.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().equalsIgnoreCase("vanban")){
+                    Intent intent = new Intent(Screen_lichSuQuet.this, vanBanShow.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else if(maCode.getTheLoai().startsWith("barcode")){
+                    Intent intent = new Intent(Screen_lichSuQuet.this, barcodeShow.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(Screen_lichSuQuet.this, vanBanShow.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noiDung", maCode.getMaCode());
+                    bundle.putString("theLoai", maCode.getTheLoai());
+                    bundle.putString("thoiGian", maCode.getNgayThang());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -71,7 +125,7 @@ public class Screen_lichSuQuet extends AppCompatActivity {
                     .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            sqLite.deleteAll();
+                            sqLite.deleteQuet();
                             maCodeList = sqLite.getDanhSachQuet();
                             maCodeAdapter = new maCodeAdapter(maCodeList);
                             listViewQuet.setAdapter(maCodeAdapter);
