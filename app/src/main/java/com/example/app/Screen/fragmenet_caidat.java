@@ -1,5 +1,6 @@
 package com.example.app.Screen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.example.app.SubScreen.AppVersion;
 import com.example.app.SubScreen.Help;
 import com.example.app.SubScreen.Info;
 import com.example.app.SubScreen.License;
+import android.content.SharedPreferences;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -83,16 +85,26 @@ public class fragmenet_caidat extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragmenet_caidat, container, false);
         tggLuuQuet = view.findViewById(R.id.tgg_luuQuet);
         tggShowWeb = view.findViewById(R.id.tgg_showWeb);
+        SharedPreferences showWeb = fragmenet_caidat.this.getActivity().getSharedPreferences("showWeb", Context.MODE_PRIVATE);
+        SharedPreferences luuQuet = fragmenet_caidat.this.getActivity().getSharedPreferences("luuQuet", Context.MODE_PRIVATE);
+        tggShowWeb.setChecked(showWeb.getBoolean("showWeb", false));
+        tggLuuQuet.setChecked(luuQuet.getBoolean("luuQuet", false));
         tggShowWeb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                PreferenceApp.getInstance().putBoolean(PreferenceApp.SHOW_WEB, isChecked);
+                SharedPreferences showWeb = fragmenet_caidat.this.getActivity().getSharedPreferences("showWeb", MODE_PRIVATE);
+                SharedPreferences.Editor editor = showWeb.edit();
+                editor.putBoolean("showWeb", isChecked);
+                editor.apply();
             }
         });
         tggLuuQuet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                PreferenceApp.getInstance().putBoolean(PreferenceApp.TU_LUU_LICH_SU_QUET, isChecked);
+                SharedPreferences luuQuet = fragmenet_caidat.this.getActivity().getSharedPreferences("luuQuet", MODE_PRIVATE);
+                SharedPreferences.Editor editor = luuQuet.edit();
+                editor.putBoolean("luuQuet", isChecked);
+                editor.apply();
             }
         });
         return view;

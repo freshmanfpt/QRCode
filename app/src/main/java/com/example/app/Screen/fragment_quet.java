@@ -1,8 +1,11 @@
 package com.example.app.Screen;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -110,6 +113,13 @@ public class fragment_quet extends Fragment {
                         }else if(result.getText().startsWith("http")){
                             theloai = "web";
                             classToShow = webShowCode.class;
+                            SharedPreferences sharedPreferences = fragment_quet.this.getActivity().getSharedPreferences("showWeb", Context.MODE_PRIVATE);
+                            if (sharedPreferences.getBoolean("showWeb", false)){
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(result.getText()));
+                                startActivity(intent);
+                                return;
+                            }
                         }else if(result.getText().startsWith("geo")){
                             theloai = "viTri";
                             classToShow = vitriShowCode.class;
@@ -118,11 +128,12 @@ public class fragment_quet extends Fragment {
                             classToShow = vanBanShow.class;
                         }
 
-                        maCode maCode = new maCode(result.getText(), theloai, getCurrentTime(), "quet");
-
-                        Toast.makeText(fragment_quet.this.getActivity(), result.getText()+" : "+theloai,Toast.LENGTH_LONG).show();
-
-                        sqLite.addQRcode(maCode);
+                        SharedPreferences luuQuet = fragment_quet.this.getActivity().getSharedPreferences("luuQuet", Context.MODE_PRIVATE);
+                        if (luuQuet.getBoolean("luuQuet", false)){
+                            maCode maCode = new maCode(result.getText(), theloai, getCurrentTime(), "quet");
+                            sqLite.addQRcode(maCode);
+                            Toast.makeText(fragment_quet.this.getActivity(), "Đã lưu vào lịch sử", Toast.LENGTH_SHORT).show();
+                        }
 
 
                         Intent intent = new Intent(fragment_quet.this.getContext(), classToShow);
