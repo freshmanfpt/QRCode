@@ -51,14 +51,14 @@ public class maCodeAdapter extends BaseAdapter {
         tv_theLoaiCode.setText(maCode.getTheLoai());
         tv_ngayThangCode.setText(maCode.getNgayThang());
 
-        if(maCode.getTheLoai().equalsIgnoreCase("barcode")){
+        if(maCode.getTheLoai().startsWith("barcode")){
             imageView_hinhAnh.setImageResource(R.drawable.barcode1);
         }else if (maCode.getTheLoai().equalsIgnoreCase("viTri")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_location_on_24);
         }else if (maCode.getTheLoai().equalsIgnoreCase("web")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);
         }else if (maCode.getTheLoai().equalsIgnoreCase("vanban")){
-            imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);
+            imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_text_snippet_24);
         }else {
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_qr_code_24);
         }

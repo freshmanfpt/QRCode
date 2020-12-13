@@ -1,10 +1,12 @@
 package com.example.app.ShowCode;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,5 +87,16 @@ public class barcodeShow extends AppCompatActivity {
         bundle1.putString("thoiGian", textName2);
         intent.putExtras(bundle1);
         startActivity(intent);
+    }
+    public void timKiemWeb(View view){
+        try {
+            Bundle bundle = getIntent().getExtras();
+            String noiDung = bundle.getString("noiDung");
+            Uri uri = Uri.parse("https://www.google.com/search?q="+noiDung+"&cad=h");
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            startActivity(intent);
+        }catch (ActivityNotFoundException e){
+            e.printStackTrace();
+        }
     }
 }

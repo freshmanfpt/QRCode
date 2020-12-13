@@ -2,9 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/search_view"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Tim Kiem"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
     <item
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="Xoa"

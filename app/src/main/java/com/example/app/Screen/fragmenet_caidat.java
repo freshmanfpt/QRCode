@@ -108,18 +108,10 @@ public class fragmenet_caidat extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = view.findViewById(R.id.st_help);
         Button button1 = view.findViewById(R.id.st_gioithieu);
         Button button2 = view.findViewById(R.id.st_giayphep);
         Button button3 = view.findViewById(R.id.st_app);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Help.class);
-                startActivity(intent);
-            }
-        });
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

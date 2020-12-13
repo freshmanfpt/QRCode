@@ -74,6 +74,7 @@
             android:background="@color/trasn"
             android:text="Tìm Kiếm Trên Mạng"
             android:textColor="@color/black"
+            android:onClick="timKiemWeb"
             />
     </LinearLayout>
 </RelativeLayout>

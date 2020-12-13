@@ -75,17 +75,7 @@
             android:textColor="#FF9100"
             />
 
-            <Button
-                android:id="@+id/st_help"
-                android:drawableLeft="@drawable/help"
-                android:layout_width="match_parent"
-                android:textAlignment="viewStart"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple"
-                android:text="Trợ Giúp Và Phản Hồi"
-                android:textColor="@color/black" />
-
-            <Button
+        <Button
                 android:id="@+id/st_gioithieu"
                 android:drawableLeft="@drawable/about"
                 android:layout_width="match_parent"

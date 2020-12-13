@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,12 +116,31 @@ public class Screen_lichSuTao extends AppCompatActivity {
                     })
                     .show();
         }
+        if (item.getItemId()==R.id.search_view){
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_view);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                maCodeList = sqLite.timKiemTao(s);
+                maCodeAdapter = new maCodeAdapter(maCodeList);
+                listViewTao.setAdapter(maCodeAdapter);
+                return false;
+            }
+        });
         return true;
     }
 }

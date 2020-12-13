@@ -86,6 +86,40 @@ public class SQLite extends SQLiteOpenHelper {
         cursor.close();
         return maCodeList;
     }
+    public List<maCode> timKiemTao(String noiDung){
+        List<maCode> maCodeList = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        Cursor cursor;
+        String danhsach1 = "tao";
+        cursor= sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME + " WHERE danhsach LIKE '" +danhsach1+"%' AND maCode LIKE '" +noiDung+"%' ",null);
+        while (cursor.moveToNext()){
+            String maCode = cursor.getString(0);
+            String theLoai = cursor.getString(1);
+            String ngayThang = cursor.getString(2);
+            String danhsach = cursor.getString(3);
+            maCode maCode1 = new maCode(maCode,theLoai,ngayThang,danhsach);
+            maCodeList.add(maCode1);
+        }
+        cursor.close();
+        return maCodeList;
+    }
+    public List<maCode> timKiemQuet(String noiDung){
+        List<maCode> maCodeList = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        Cursor cursor;
+        String danhsach1 = "quet";
+        cursor= sqLiteDatabase.rawQuery("SELECT * FROM "+ TABLE_NAME + " WHERE danhsach LIKE '" +danhsach1+"%' AND maCode LIKE '" +noiDung+"%' ",null);
+        while (cursor.moveToNext()){
+            String maCode = cursor.getString(0);
+            String theLoai = cursor.getString(1);
+            String ngayThang = cursor.getString(2);
+            String danhsach = cursor.getString(3);
+            maCode maCode1 = new maCode(maCode,theLoai,ngayThang,danhsach);
+            maCodeList.add(maCode1);
+        }
+        cursor.close();
+        return maCodeList;
+    }
     public void deletemaCode(String maCode){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         sqLiteDatabase.delete("QRCode","maCode = ?", new String[]{maCode});
