@@ -91,6 +91,16 @@ public class SQLite extends SQLiteOpenHelper {
         sqLiteDatabase.delete("QRCode","maCode = ?", new String[]{maCode});
     }
 
+    public void deleteTao(){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.delete("QRCode", "danhsach = ?", new String[]{"tao"});
+    }
+
+    public void deleteQuet(){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.delete("QRCode", "danhsach = ?", new String[]{"quet"});
+    }
+
     public void deleteAll(){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         sqLiteDatabase.execSQL("delete from "+TABLE_NAME);

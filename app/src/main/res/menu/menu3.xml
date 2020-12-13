@@ -4,6 +4,7 @@
     <item
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="Location"
+        android:id="@+id/delete"
         app:showAsAction="always"/>
     <item
         android:id="@+id/share"

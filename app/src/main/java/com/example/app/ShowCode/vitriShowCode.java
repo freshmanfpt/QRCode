@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.app.R;
+import com.example.app.SQL.SQLite;
 
 public class vitriShowCode extends AppCompatActivity {
 
@@ -58,6 +59,10 @@ public class vitriShowCode extends AppCompatActivity {
             shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
             shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,content);
             startActivity(Intent.createChooser(shareIntent, "Share via"));
+        }else if(item.getItemId() == R.id.delete){
+            SQLite sqlite = new SQLite(vitriShowCode.this);
+            sqlite.deletemaCode(content);
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }

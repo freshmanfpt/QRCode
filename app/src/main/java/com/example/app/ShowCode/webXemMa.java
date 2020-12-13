@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.app.R;
+import com.example.app.SQL.SQLite;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -30,6 +33,8 @@ public class webXemMa extends AppCompatActivity {
     TextView tv_ngayThang;
 
     String textName;
+    String maCode;
+    private Bitmap bitmapShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class webXemMa extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String textName = bundle.getString("noiDung");
+        maCode = textName;
         String textName1 = bundle.getString("theLoai");
         String textName2 = bundle.getString("thoiGian");
         String full = textName;
@@ -96,6 +102,7 @@ public class webXemMa extends AppCompatActivity {
                 BitMatrix bitMatrix = writer.encode(full, barcodeFormat, 450, 150);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                bitmapShare = bitmap;
                 img_hinhAnhMa.setImageBitmap(bitmap);
             } catch (Exception e) {
                 Toast.makeText(webXemMa.this, "Mã nhập không hợp lệ!", Toast.LENGTH_SHORT).show();
@@ -128,6 +135,17 @@ public class webXemMa extends AppCompatActivity {
             String content = textName;
             shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,content);
             startActivity(Intent.createChooser(shareIntent, "Share via"));
+
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            Uri screenshotUri = Uri.parse(String.valueOf(MediaStore.Images.Media.insertImage(getContentResolver(), bitmapShare,"bitmapShare", null)));
+
+            sharingIntent.setType("image/png");
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+            startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+        }else if(item.getItemId() == R.id.delete){
+            SQLite sqlite = new SQLite(webXemMa.this);
+            sqlite.deletemaCode(maCode);
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }

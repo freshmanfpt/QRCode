@@ -1,5 +1,7 @@
 package com.example.app.Screen;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -19,7 +21,11 @@ import com.example.app.DAO.maCode;
 import com.example.app.DAO.maCodeAdapter;
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
+import com.example.app.ShowCode.barcodeShow;
+import com.example.app.ShowCode.vanBanShow;
+import com.example.app.ShowCode.vitriShowCode;
 import com.example.app.ShowCode.webShowCode;
+import com.example.app.ShowCode.wifiShowCode;
 
 import java.util.List;
 
@@ -50,24 +56,63 @@ public class Screen_lichSuTao extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 maCode maCode = maCodeList.get(i);
+                Class classToShow;
                 if(maCode.getTheLoai().equalsIgnoreCase("web")){
-                    Intent intent = new Intent(Screen_lichSuTao.this, webShowCode.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("noiDung", maCode.getMaCode());
-                    bundle.putString("theLoai", maCode.getTheLoai());
-                    bundle.putString("thoiGian", maCode.getNgayThang());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    classToShow = webShowCode.class;
+                }else if(maCode.getTheLoai().equalsIgnoreCase("wifi")){
+                    classToShow = wifiShowCode.class;
+                }else if(maCode.getTheLoai().equalsIgnoreCase("barcode")){
+                    classToShow = barcodeShow.class;
+                }else if(maCode.getTheLoai().equalsIgnoreCase("vitri")){
+                    classToShow = vitriShowCode.class;
+                }else{
+                    classToShow = vanBanShow.class;
                 }
-
+                Intent intent = new Intent(Screen_lichSuTao.this, classToShow);
+                Bundle bundle = new Bundle();
+                bundle.putString("noiDung", maCode.getMaCode());
+                bundle.putString("theLoai", maCode.getTheLoai());
+                bundle.putString("thoiGian", maCode.getNgayThang());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
+    }
+
+    private void reloadListView(){
+        maCodeList = sqLite.getDanhSachTao();
+        maCodeAdapter = new maCodeAdapter(maCodeList);
+        listViewTao.setAdapter(maCodeAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        reloadListView();
+        super.onResume();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home){
             finish();
+        }
+        if (item.getItemId() == R.id.delete){
+            new AlertDialog.Builder(Screen_lichSuTao.this).setTitle("Bạn muốn xóa tất lịch sử?")
+                    .setMessage("value")
+                    .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sqLite.deleteTao();
+                            reloadListView();
+                        }
+                    })
+                    .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }

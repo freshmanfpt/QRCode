@@ -63,7 +63,7 @@ public class taoBarcode extends AppCompatActivity {
             bundle.putString("thoiGian", getCurrentTime());
             intent.putExtras(bundle);
             SQLite sqLite = new SQLite(taoBarcode.this);
-            maCode maCode = new maCode(noiDung,"barcode",getCurrentTime(),"tao");
+            maCode maCode = new maCode(noiDung,"barcode/"+barcodeName,getCurrentTime(),"tao");
             sqLite.addQRcode(maCode);
             startActivity(intent);
         }
