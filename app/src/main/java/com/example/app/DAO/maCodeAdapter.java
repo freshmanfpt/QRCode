@@ -53,7 +53,7 @@ public class maCodeAdapter extends BaseAdapter {
 
         if(maCode.getTheLoai().equalsIgnoreCase("barcode")){
             imageView_hinhAnh.setImageResource(R.drawable.barcode1);
-        }else if (maCode.getTheLoai().equalsIgnoreCase("vitri")){
+        }else if (maCode.getTheLoai().equalsIgnoreCase("viTri")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_location_on_24);
         }else if (maCode.getTheLoai().equalsIgnoreCase("web")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);

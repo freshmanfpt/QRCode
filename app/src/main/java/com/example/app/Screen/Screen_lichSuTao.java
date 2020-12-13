@@ -75,6 +75,7 @@ public class Screen_lichSuTao extends AppCompatActivity {
                 bundle.putString("thoiGian", maCode.getNgayThang());
                 intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
     }

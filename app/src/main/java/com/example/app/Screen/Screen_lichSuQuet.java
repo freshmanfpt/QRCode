@@ -78,6 +78,7 @@ public class Screen_lichSuQuet extends AppCompatActivity {
                 bundle.putString("thoiGian", maCode.getNgayThang());
                 intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
     }

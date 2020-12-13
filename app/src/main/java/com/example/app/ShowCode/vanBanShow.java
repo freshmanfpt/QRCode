@@ -18,7 +18,6 @@ import com.example.app.R;
 import com.example.app.SQL.SQLite;
 
 public class vanBanShow extends AppCompatActivity {
-
     private String content;
 
     @Override
