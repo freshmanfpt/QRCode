@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,15 +56,49 @@ public class webXemMa extends AppCompatActivity {
         String full = textName;
 
         MultiFormatWriter writer = new MultiFormatWriter();
-        if (textName1 == "barcode"){
-            BarcodeFormat barcodeFormat = (BarcodeFormat) bundle.get("barcodeFormat");
+        if (textName1.startsWith("barcode")){
+            String typeBarCode = textName1.split("/")[1];
+            BarcodeFormat barcodeFormat;
+            if(typeBarCode.equals("Code_128")){
+                barcodeFormat = BarcodeFormat.CODE_128;
+            }else if(typeBarCode.equals("AZTEC")){
+                barcodeFormat = BarcodeFormat.AZTEC;
+            }else if(typeBarCode.equals("CODABAR")){
+                barcodeFormat = BarcodeFormat.CODABAR;
+            }else if(typeBarCode.equals("CODE 39")){
+                barcodeFormat = BarcodeFormat.CODE_39;
+            }else if(typeBarCode.equals("CODE 93")){
+                barcodeFormat = BarcodeFormat.CODE_93;
+            }else if(typeBarCode.equals("DATA MATRIX")){
+                barcodeFormat = BarcodeFormat.DATA_MATRIX;
+            }else if(typeBarCode.equals("EAN8")){
+                barcodeFormat = BarcodeFormat.EAN_8;
+            }else if(typeBarCode.equals("EAN13")){
+                barcodeFormat = BarcodeFormat.EAN_13;
+            }else if(typeBarCode.equals("ITF")){
+                barcodeFormat = BarcodeFormat.ITF;
+            }else if(typeBarCode.equals("MAXICODE")){
+                barcodeFormat = BarcodeFormat.MAXICODE;
+            }else if(typeBarCode.equals("PDF 417")){
+                barcodeFormat = BarcodeFormat.PDF_417;
+            }else if(typeBarCode.equals("RSS 14")){
+                barcodeFormat = BarcodeFormat.RSS_14;
+            }else if(typeBarCode.equals("RSS EXPANDED")){
+                barcodeFormat = BarcodeFormat.RSS_EXPANDED;
+            }else if(typeBarCode.equals("UPCA")){
+                barcodeFormat = BarcodeFormat.UPC_A;
+            }else if(typeBarCode.equals("UPCE")){
+                barcodeFormat = BarcodeFormat.UPC_E;
+            }else{
+                barcodeFormat = BarcodeFormat.UPC_EAN_EXTENSION;
+            }
             try {
                 BitMatrix bitMatrix = writer.encode(full, barcodeFormat, 450, 150);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                 img_hinhAnhMa.setImageBitmap(bitmap);
-            } catch (WriterException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Toast.makeText(webXemMa.this, "Mã nhập không hợp lệ!", Toast.LENGTH_SHORT).show();
             }
         }else{
             try {

@@ -24,6 +24,7 @@ import static com.example.app.MainActivity.getCurrentTime;
 public class taoBarcode extends AppCompatActivity {
 
     private EditText txtNoiDung;
+    private String barcodeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,10 @@ public class taoBarcode extends AppCompatActivity {
         SharedPreferences name = getSharedPreferences("barcodename",MODE_PRIVATE);
         SharedPreferences hint = getSharedPreferences("barcodenhint",MODE_PRIVATE);
 
-        String barcodename = name.getString("barcodename",null);
+        barcodeName = name.getString("barcodename",null);
         String barcodehint = hint.getString("barcodehint",null);
         getSupportActionBar().setTitle(barcodehint);
-        txtNoiDung.setHint(barcodename);
+        txtNoiDung.setHint(barcodeName);
     }
 
     @Override
@@ -58,11 +59,11 @@ public class taoBarcode extends AppCompatActivity {
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             bundle.putString("noiDung", noiDung);
-            bundle.putString("theLoai", "barcode");
+            bundle.putString("theLoai", "barcode/"+barcodeName);
             bundle.putString("thoiGian", getCurrentTime());
             intent.putExtras(bundle);
             SQLite sqLite = new SQLite(taoBarcode.this);
-            maCode maCode = new maCode(noiDung,"vanBan",getCurrentTime(),"tao");
+            maCode maCode = new maCode(noiDung,"barcode",getCurrentTime(),"tao");
             sqLite.addQRcode(maCode);
             startActivity(intent);
         }
