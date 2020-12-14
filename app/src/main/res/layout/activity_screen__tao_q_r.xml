@@ -62,13 +62,4 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_baseline_text_snippet_24"
         android:text="Văn Bản"/>
-    <Button
-        android:id="@+id/btn_taoQR6"
-        android:background="@drawable/ripple"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:textAlignment="textStart"
-        android:drawableLeft="@drawable/ic_baseline_apps_24"
-        android:layout_height="wrap_content"
-        android:text="Ứng Dụng"/>
 </LinearLayout>

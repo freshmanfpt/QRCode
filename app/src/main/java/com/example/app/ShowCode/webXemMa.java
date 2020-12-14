@@ -45,7 +45,6 @@ public class webXemMa extends AppCompatActivity {
     TextView tv_theLoai;
     TextView tv_ngayThang;
 
-    String textName;
     String maCode;
     private Bitmap bitmapShare;
 
@@ -68,11 +67,9 @@ public class webXemMa extends AppCompatActivity {
         tv_ngayThang = findViewById(R.id.tv_ngayThangMa);
 
         Bundle bundle = getIntent().getExtras();
-        String textName = bundle.getString("noiDung");
-        maCode = textName;
+        maCode = bundle.getString("noiDung");
         String textName1 = bundle.getString("theLoai");
         String textName2 = bundle.getString("thoiGian");
-        String full = textName;
 
         MultiFormatWriter writer = new MultiFormatWriter();
         if (textName1.startsWith("barcode")){
@@ -112,7 +109,7 @@ public class webXemMa extends AppCompatActivity {
                 barcodeFormat = BarcodeFormat.UPC_EAN_EXTENSION;
             }
             try {
-                BitMatrix bitMatrix = writer.encode(full, barcodeFormat, 450, 150);
+                BitMatrix bitMatrix = writer.encode(maCode, barcodeFormat, 450, 150);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 bitmapShare = barcodeEncoder.createBitmap(bitMatrix);
                 img_hinhAnhMa.setImageBitmap(bitmapShare);
@@ -121,7 +118,7 @@ public class webXemMa extends AppCompatActivity {
             }
         }else{
             try {
-                BitMatrix bitMatrix = writer.encode(full, BarcodeFormat.QR_CODE, 450, 450);
+                BitMatrix bitMatrix = writer.encode(maCode, BarcodeFormat.QR_CODE, 450, 450);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 bitmapShare = barcodeEncoder.createBitmap(bitMatrix);
                 img_hinhAnhMa.setImageBitmap(bitmapShare);
@@ -131,7 +128,7 @@ public class webXemMa extends AppCompatActivity {
         }
 
 
-        tv_noiDung.setText(textName);
+        tv_noiDung.setText(maCode);
         tv_theLoai.setText(textName1);
         tv_ngayThang.setText(textName2);
     }
@@ -141,15 +138,6 @@ public class webXemMa extends AppCompatActivity {
         if(item.getItemId()==android.R.id.home){
             finish();
         }else if (item.getItemId()==R.id.share){
-//            Intent share = new Intent(Intent.ACTION_SEND);
-//            share.setType("image/jpeg");
-//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//            bitmapShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//            String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmapShare, "Title", null);
-//            Uri uri = Uri.parse(path);
-//            share.putExtra(Intent.EXTRA_STREAM, uri);
-//            startActivity(Intent.createChooser(share, "Share image using"));
-
             try{
                 File cachePath = new File(getCacheDir(), "images");
                 cachePath.mkdirs();
@@ -172,28 +160,6 @@ public class webXemMa extends AppCompatActivity {
                 shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
                 startActivity(Intent.createChooser(shareIntent, "Share image using"));
             }
-
-//            Intent share = new Intent(Intent.ACTION_SEND);
-//            share.setType("image/jpeg");
-//
-//            ContentValues values = new ContentValues();
-//            values.put(MediaStore.Images.Media.TITLE, "title");
-//            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-//            Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                    values);
-//
-//
-//            OutputStream outstream;
-//            try {
-//                outstream = getContentResolver().openOutputStream(uri);
-//                bitmapShare.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-//                outstream.close();
-//            } catch (Exception e) {
-//                System.err.println(e.toString());
-//            }
-//
-//            share.putExtra(Intent.EXTRA_STREAM, uri);
-//            startActivity(Intent.createChooser(share, "Share Image using"));
         }else if(item.getItemId() == R.id.delete){
             SQLite sqlite = new SQLite(webXemMa.this);
             sqlite.deletemaCode(maCode);

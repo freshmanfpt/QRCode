@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.app.CodeScreen.taoQRApp;
 import com.example.app.CodeScreen.taoQRVanBan;
 import com.example.app.CodeScreen.taoQRViTri;
 import com.example.app.CodeScreen.taoQRWeb;
@@ -47,7 +46,6 @@ public class Screen_TaoQR extends AppCompatActivity {
         Button button3 = findViewById(R.id.btn_taoQR3);
         Button button4 = findViewById(R.id.btn_taoQR4);
         Button button5 = findViewById(R.id.btn_taoQR5);
-        Button button6 = findViewById(R.id.btn_taoQR6);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +95,6 @@ public class Screen_TaoQR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), taoQRVanBan.class);
-                startActivity(intent);
-            }
-        });
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), taoQRApp.class);
                 startActivity(intent);
             }
         });
