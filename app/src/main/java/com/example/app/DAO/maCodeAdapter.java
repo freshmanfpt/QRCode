@@ -59,6 +59,10 @@ public class maCodeAdapter extends BaseAdapter {
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_web_24);
         }else if (maCode.getTheLoai().equalsIgnoreCase("vanban")){
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_text_snippet_24);
+        }else if (maCode.getTheLoai().equalsIgnoreCase("wifi")){
+            imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_wifi_24);
+        }else if(maCode.getTheLoai().equalsIgnoreCase("app")){
+            imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_apps_24);
         }else {
             imageView_hinhAnh.setImageResource(R.drawable.ic_baseline_qr_code_24);
         }

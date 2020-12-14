@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,9 +75,13 @@ public class webShowCode extends AppCompatActivity {
     }
 
     public void moTrenWeb(View v){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        }catch (Exception e){
+            Toast.makeText(webShowCode.this,"Không thể truy câp web mời bạn xem lại đường dẫn",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void goToXemMa(View view){

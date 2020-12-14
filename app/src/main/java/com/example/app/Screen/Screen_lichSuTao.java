@@ -66,6 +66,8 @@ public class Screen_lichSuTao extends AppCompatActivity {
                     classToShow = barcodeShow.class;
                 }else if(maCode.getTheLoai().equalsIgnoreCase("vitri")){
                     classToShow = vitriShowCode.class;
+                }else if(maCode.getTheLoai().equalsIgnoreCase("app")){
+                    classToShow = webShowCode.class;
                 }else{
                     classToShow = vanBanShow.class;
                 }

@@ -5,25 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CodeScreen.taoQRApp">
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar_taoQRapp"
-        app:title="Tạo QR Ứng Dụng"
-        android:background="@color/primary"
-        app:titleTextColor="@color/white"
-        />
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar_taoQRapp"
+            app:title="Tạo QR Ứng Dụng"
+            android:background="@color/primary"
+            app:titleTextColor="@color/white"
+            />
 
-<!--    <ListView-->
-<!--        android:layout_below="@+id/toolbar_taoQRapp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-    <TextView
-        android:layout_below="@+id/toolbar_taoQRapp"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Nội dung sao chép đang rỗng!"/>
-
+        <ListView
+            android:id="@+id/lv_appList"
+            android:layout_below="@id/toolbar_taoQRapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -59,6 +59,7 @@
         <activity android:name=".CodeScreen.taoQRVanBan" />
         <activity android:name=".CodeScreen.taoQRWifi" />
         <activity android:name=".CodeScreen.taoQRWeb" />
+        <activity android:name=".CodeScreen.taoQRApp" />
         <activity android:name=".SubScreen.AppVersion" />
         <activity android:name=".SubScreen.License" />
         <activity android:name=".SubScreen.Info" />
