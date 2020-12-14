@@ -160,6 +160,10 @@ public class taoQRViTri extends AppCompatActivity implements OnMapReadyCallback,
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             String noiDung = "geo:"+kinhDo+","+viDo;
+            if (kinhDo.isEmpty()||viDo.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+            }
             bundle.putString("noiDung", noiDung);
             bundle.putString("theLoai", "viTri");
             bundle.putString("thoiGian", getCurrentTime());

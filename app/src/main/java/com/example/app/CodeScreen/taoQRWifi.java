@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.example.app.DAO.maCode;
 import com.example.app.R;
@@ -65,6 +66,10 @@ public class taoQRWifi extends AppCompatActivity {
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             String noiDung = "WIFI:T:"+type+";S:"+tenMang+";P:"+matKhau+";H:;";
+            if (tenMang.isEmpty()||matKhau.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+            }
             bundle.putString("noiDung", noiDung);
             bundle.putString("theLoai", "wifi");
             bundle.putString("thoiGian", getCurrentTime());

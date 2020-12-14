@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.app.DAO.maCode;
 import com.example.app.R;
@@ -56,6 +57,10 @@ public class taoBarcode extends AppCompatActivity {
         if (item.getItemId() == R.id.check){
             String noiDung = txtNoiDung.getText().toString();
 
+            if (noiDung.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+            }
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             bundle.putString("noiDung", noiDung);

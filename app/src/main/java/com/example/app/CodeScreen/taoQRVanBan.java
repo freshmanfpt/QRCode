@@ -49,7 +49,10 @@ public class taoQRVanBan extends AppCompatActivity {
             Toast.makeText(this, "1.0.0", Toast.LENGTH_SHORT).show();
 
             String noiDung = txtNoiDung.getText().toString();
-
+            if (noiDung.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+            }
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             bundle.putString("noiDung", noiDung);

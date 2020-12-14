@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,10 @@ public class taoQRWeb extends AppCompatActivity {
             Intent intent = new Intent(this, webXemMa.class);
             Bundle bundle = new Bundle();
             String tvKD = editText.getText().toString();
+            if (tvKD.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+            }
             bundle.putString("noiDung", tvKD);
             bundle.putString("theLoai", "web");
             bundle.putString("thoiGian", getCurrentTime());
