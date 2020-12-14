@@ -100,7 +100,7 @@ public class Screen_lichSuTao extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.delete){
             new AlertDialog.Builder(Screen_lichSuTao.this).setTitle("Bạn muốn xóa tất lịch sử?")
-                    .setMessage("value")
+                    .setMessage("")
                     .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

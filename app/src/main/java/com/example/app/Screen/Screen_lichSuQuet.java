@@ -84,7 +84,17 @@ public class Screen_lichSuQuet extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadListView();
+    }
 
+    private void reloadListView(){
+        maCodeList = sqLite.getDanhSachQuet();
+        maCodeAdapter = new maCodeAdapter(maCodeList);
+        listViewQuet.setAdapter(maCodeAdapter);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -93,14 +103,12 @@ public class Screen_lichSuQuet extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.delete){
             new AlertDialog.Builder(Screen_lichSuQuet.this).setTitle("Bạn muốn xóa tất lịch sử?")
-                    .setMessage("value")
+                    .setMessage("")
                     .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             sqLite.deleteQuet();
-                            maCodeList = sqLite.getDanhSachQuet();
-                            maCodeAdapter = new maCodeAdapter(maCodeList);
-                            listViewQuet.setAdapter(maCodeAdapter);
+                            reloadListView();
                         }
                     })
                     .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {

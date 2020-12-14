@@ -6,6 +6,7 @@
         android:name="android.hardware.camera2"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -18,55 +19,64 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.App">
-        <activity android:name=".ShowCode.vanBanShow"></activity>
-        <activity android:name=".ShowCode.vitriShowCode" />
-        <activity android:name=".ShowCode.barcodeShow" />
-        <activity android:name=".ShowCode.wifiShowCode" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
+    <application>
+    <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="com.example.app.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/filepaths" />
+    </provider>
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.App">
+    <activity android:name=".ShowCode.vanBanShow"></activity>
+    <activity android:name=".ShowCode.vitriShowCode" />
+    <activity android:name=".ShowCode.barcodeShow" />
+    <activity android:name=".ShowCode.wifiShowCode" />
+    <!--
+         The API key for Google Maps-based APIs is defined as a string resource.
+         (See the file "res/values/google_maps_api.xml").
+         Note that the API key is linked to the encryption key used to sign the APK.
+         You need a different API key for each encryption key, including the release key that is used to
+         sign the APK for publishing.
+         You can define the keys for the debug and release targets in src/debug/ and src/release/.
+    -->
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".CodeScreen.taoQRViTri"
-            android:label="@string/title_activity_tao_q_r_vi_tri" />
-        <activity android:name=".ShowCode.webXemMa" />
-        <activity android:name=".ShowCode.webShowCode" />
-        <activity android:name=".CodeScreen.taoBarcode" />
-        <activity android:name=".CodeScreen.taoQRApp" />
-        <activity android:name=".CodeScreen.taoQRVanBan" />
-        <activity android:name=".CodeScreen.taoQRWifi" />
-        <activity android:name=".CodeScreen.taoQRWeb" />
-        <activity android:name=".SubScreen.AppVersion" />
-        <activity android:name=".SubScreen.License" />
-        <activity android:name=".SubScreen.Info" />
-        <activity android:name=".SubScreen.Help" />
-        <activity android:name=".Screen.Screen_lichSuQuet" />
-        <activity android:name=".Screen.Screen_lichSuTao" />
-        <activity android:name=".Screen.Screen_taoBarCOde" />
-        <activity android:name=".Screen.Screen_TaoQR" />
-        <activity android:name=".Screen.Home" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <activity
+        android:name=".CodeScreen.taoQRViTri"
+        android:label="@string/title_activity_tao_q_r_vi_tri" />
+    <activity android:name=".ShowCode.webXemMa" />
+    <activity android:name=".ShowCode.webShowCode" />
+    <activity android:name=".CodeScreen.taoBarcode" />
+    <activity android:name=".CodeScreen.taoQRApp" />
+    <activity android:name=".CodeScreen.taoQRVanBan" />
+    <activity android:name=".CodeScreen.taoQRWifi" />
+    <activity android:name=".CodeScreen.taoQRWeb" />
+    <activity android:name=".SubScreen.AppVersion" />
+    <activity android:name=".SubScreen.License" />
+    <activity android:name=".SubScreen.Info" />
+    <activity android:name=".SubScreen.Help" />
+    <activity android:name=".Screen.Screen_lichSuQuet" />
+    <activity android:name=".Screen.Screen_lichSuTao" />
+    <activity android:name=".Screen.Screen_taoBarCOde" />
+    <activity android:name=".Screen.Screen_TaoQR" />
+    <activity android:name=".Screen.Home" />
+    <activity android:name=".MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
 
-</manifest>
+    </manifest>

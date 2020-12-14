@@ -1,10 +1,13 @@
 package com.example.app.ShowCode;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import com.example.app.R;
 import com.example.app.SQL.SQLite;
@@ -25,6 +29,15 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
 
 public class webXemMa extends AppCompatActivity {
     ImageView img_hinhAnhMa;
@@ -101,9 +114,8 @@ public class webXemMa extends AppCompatActivity {
             try {
                 BitMatrix bitMatrix = writer.encode(full, barcodeFormat, 450, 150);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                bitmapShare = bitmap;
-                img_hinhAnhMa.setImageBitmap(bitmap);
+                bitmapShare = barcodeEncoder.createBitmap(bitMatrix);
+                img_hinhAnhMa.setImageBitmap(bitmapShare);
             } catch (Exception e) {
                 Toast.makeText(webXemMa.this, "Mã nhập không hợp lệ!", Toast.LENGTH_SHORT).show();
             }
@@ -111,8 +123,8 @@ public class webXemMa extends AppCompatActivity {
             try {
                 BitMatrix bitMatrix = writer.encode(full, BarcodeFormat.QR_CODE, 450, 450);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                img_hinhAnhMa.setImageBitmap(bitmap);
+                bitmapShare = barcodeEncoder.createBitmap(bitMatrix);
+                img_hinhAnhMa.setImageBitmap(bitmapShare);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -129,19 +141,59 @@ public class webXemMa extends AppCompatActivity {
         if(item.getItemId()==android.R.id.home){
             finish();
         }else if (item.getItemId()==R.id.share){
-            Intent shareIntent =   new Intent(android.content.Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
-            String content = textName;
-            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,content);
-            startActivity(Intent.createChooser(shareIntent, "Share via"));
+//            Intent share = new Intent(Intent.ACTION_SEND);
+//            share.setType("image/jpeg");
+//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//            bitmapShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+//            String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmapShare, "Title", null);
+//            Uri uri = Uri.parse(path);
+//            share.putExtra(Intent.EXTRA_STREAM, uri);
+//            startActivity(Intent.createChooser(share, "Share image using"));
 
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            Uri screenshotUri = Uri.parse(String.valueOf(MediaStore.Images.Media.insertImage(getContentResolver(), bitmapShare,"bitmapShare", null)));
+            try{
+                File cachePath = new File(getCacheDir(), "images");
+                cachePath.mkdirs();
+                FileOutputStream stream = new FileOutputStream(cachePath+"/image.png");
+                bitmapShare.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                stream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            sharingIntent.setType("image/png");
-            sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-            startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+            File imagePath = new File(getCacheDir(), "images");
+            File newFile = new File(imagePath, "image.png");
+            Uri contentUri = FileProvider.getUriForFile(this, "com.example.app.fileprovider",newFile);
+            if (contentUri != null){
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
+                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+                startActivity(Intent.createChooser(shareIntent, "Share image using"));
+            }
+
+//            Intent share = new Intent(Intent.ACTION_SEND);
+//            share.setType("image/jpeg");
+//
+//            ContentValues values = new ContentValues();
+//            values.put(MediaStore.Images.Media.TITLE, "title");
+//            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+//            Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                    values);
+//
+//
+//            OutputStream outstream;
+//            try {
+//                outstream = getContentResolver().openOutputStream(uri);
+//                bitmapShare.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+//                outstream.close();
+//            } catch (Exception e) {
+//                System.err.println(e.toString());
+//            }
+//
+//            share.putExtra(Intent.EXTRA_STREAM, uri);
+//            startActivity(Intent.createChooser(share, "Share Image using"));
         }else if(item.getItemId() == R.id.delete){
             SQLite sqlite = new SQLite(webXemMa.this);
             sqlite.deletemaCode(maCode);
@@ -149,6 +201,14 @@ public class webXemMa extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private Uri getImageUri(Context context, Bitmap bitmap){
+        ByteArrayOutputStream mByte = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, mByte);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu3,menu);
