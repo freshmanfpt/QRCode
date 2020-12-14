@@ -38,6 +38,7 @@
         android:layout_marginTop="14dp"
         android:padding="10dp"
         android:text="Chương trình có thể quét và tạo các thể loại mã QR cũng như các mã vạch một cách nhanh chóng và tiện lợi"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp" />
 

@@ -15,6 +15,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -24,6 +25,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.app.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
         <activity android:name=".ShowCode.vanBanShow"></activity>
         <activity android:name=".ShowCode.vitriShowCode" />
         <activity android:name=".ShowCode.barcodeShow" />
@@ -46,10 +56,10 @@
         <activity android:name=".ShowCode.webXemMa" />
         <activity android:name=".ShowCode.webShowCode" />
         <activity android:name=".CodeScreen.taoBarcode" />
-        <activity android:name=".CodeScreen.taoQRApp" />
         <activity android:name=".CodeScreen.taoQRVanBan" />
         <activity android:name=".CodeScreen.taoQRWifi" />
         <activity android:name=".CodeScreen.taoQRWeb" />
+        <activity android:name=".CodeScreen.taoQRApp" />
         <activity android:name=".SubScreen.AppVersion" />
         <activity android:name=".SubScreen.License" />
         <activity android:name=".SubScreen.Info" />

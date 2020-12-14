@@ -63,6 +63,7 @@
             android:background="@color/trasn"
             android:text="Mở trên web"
             android:textColor="@color/black"
+            android:onClick="moTrenWeb"
             />
     </LinearLayout>
 </RelativeLayout>

@@ -55,15 +55,7 @@
             android:textColor="@color/black"
             android:onClick="goToXemMa"
             />
-        <Button
-            android:textAlignment="viewStart"
-            android:drawableLeft="@drawable/ic_baseline_wifi_24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/trasn"
-            android:text="Kết Nối Wifi"
-            android:textColor="@color/black"
-            />
+
         <Button
             android:textAlignment="viewStart"
             android:drawableLeft="@drawable/ic_baseline_content_copy_24"
@@ -71,6 +63,7 @@
             android:layout_height="wrap_content"
             android:background="@color/trasn"
             android:text="Sao chép tên mạng"
+            android:onClick="copyTenMang"
             android:textColor="@color/black"
             />
         <Button
@@ -80,6 +73,7 @@
             android:layout_height="wrap_content"
             android:background="@color/trasn"
             android:text="Sao chép mật khẩu"
+            android:onClick="copyMatKhau"
             android:textColor="@color/black"
             />
     </LinearLayout>

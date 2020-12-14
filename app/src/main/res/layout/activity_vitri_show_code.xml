@@ -56,14 +56,15 @@
             android:textColor="@color/black"
             android:onClick="goToXemMa"
             />
+
         <Button
-            android:textAlignment="viewStart"
-            android:drawableLeft="@drawable/ic_baseline_location_on_24"
+            android:id="@+id/moVitri_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/trasn"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:text="Mở Vị Trí"
-            android:textColor="@color/black"
-            />
+            android:textAlignment="viewStart"
+            android:textColor="@color/black" />
     </LinearLayout>
 </RelativeLayout>

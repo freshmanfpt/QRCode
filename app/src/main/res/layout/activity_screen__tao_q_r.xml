@@ -68,7 +68,7 @@
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:textAlignment="textStart"
-        android:drawableLeft="@drawable/ic_baseline_apps_24"
         android:layout_height="wrap_content"
-        android:text="Ứng Dụng"/>
+        android:drawableLeft="@drawable/ic_baseline_apps_24"
+        android:text="App"/>
 </LinearLayout>

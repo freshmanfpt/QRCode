@@ -31,9 +31,9 @@ public class SliderAdapter extends PagerAdapter {
             "Chia Sẻ Mã"
     };
     public String[] slide_desc = {
-            "",
-            "",
-            ""
+            "Quét và tạo những kiểu mã QR và Barcode một cách nhanh chóng tiện lợi",
+            "Lưu trữ các thể loại mã QR và Barcode trong thiết bị android của bạn",
+            "Chia sẻ những đoạn mã cho người quen qua nhiều nền tản xã hội"
     };
     @Override
     public int getCount() {

@@ -4,8 +4,10 @@
     <item
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="Location"
+        android:id="@+id/delete"
         app:showAsAction="always"/>
     <item
+        android:id="@+id/share"
         android:icon="@drawable/share_menu"
         android:title="Check"
         app:showAsAction="always"/>
